@@ -101,7 +101,7 @@ class Card_Prompt:
             glossar_defintion = current[1].strip()
             glossar_explaination = current[2].strip()
 
-            self.__anki_instance.add_card(self.anki_deck, glossar_defintion[:-1], glossar_explaination)
+            self.__anki_instance.add_card(self.anki_deck, glossar_defintion, glossar_explaination)
     
     def exit(self):
         self.__prompt_instance.write_message("Exam sucessfully generated! Exiting now!")
