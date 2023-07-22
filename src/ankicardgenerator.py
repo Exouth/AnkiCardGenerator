@@ -22,10 +22,6 @@ try:
 
     data = engine.get_glossar_entries(layer)
 
-    test = engine.add_to_anki(data)
-
-    for index in test:
-        print("--------------------------------")
-        print("test: " + index)
+    engine.add_to_anki(data)
 except KeyboardInterrupt:
     engine.exit()

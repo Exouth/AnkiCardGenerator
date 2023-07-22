@@ -1,6 +1,7 @@
 import sys
 from lib.prompting import Prompt
 from lib.joplin_api import JoplinAPI
+from lib.anki_api import AnkiAPI
 
 class Card_Prompt:
 
@@ -11,6 +12,7 @@ class Card_Prompt:
         self.anki_deck = ""
         self.__prompt_instance = Prompt()
         self.__api_instance = JoplinAPI(joplin_api)
+        self.__anki_instance = AnkiAPI()
     
     def ask_notebook(self):
         foldername = self.__prompt_instance.promp_user_return("What is the Name of the Notebook?", "You set the Notebook to")
@@ -93,9 +95,13 @@ class Card_Prompt:
             if "-" in index:
                 clean.append(index)
 
-        
+        for defintion in clean:
+            current = defintion.split("**")
 
-        return clean
+            glossar_defintion = current[1].strip()
+            glossar_explaination = current[2].strip()
+
+            self.__anki_instance.add_card(self.anki_deck, glossar_defintion[:-1], glossar_explaination)
     
     def exit(self):
         self.__prompt_instance.write_message("Exam sucessfully generated! Exiting now!")
