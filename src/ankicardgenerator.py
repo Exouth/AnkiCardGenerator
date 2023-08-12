@@ -3,24 +3,23 @@ sys.dont_write_bytecode = True
 
 from lib.card_prompt import Card_Prompt
 
-engine = Card_Prompt("180bdc1f34ea46a48abaf34f2c121cb05391263a49a1b3c246c6241df172bf8dc06dd27d4c0b8edbc60eed6380be8b27566c6bcd7dfa34578efe5e0113605839")
+engine = Card_Prompt()
 
 try:
-    notebook = engine.ask_notebook()
+    obsidian_path = engine.ask_obsidian_path()
 
-    glossar = engine.ask_glossar_name()
+    glossar = engine.ask_note()
 
-    engine.ask_number()
-
-    layer = engine.ask_layer()
+    engine.ask_start_topic()
+    engine.ask_end_topic()
 
     deckname = engine.ask_deck()
 
     engine.next_step()
 
-    engine.get_all_glossar_body()
+    path = engine.get_obsidian_path()
 
-    data = engine.get_glossar_entries(layer)
+    data = engine.get_glossar_entries(path)
 
     engine.add_to_anki(data)
 except KeyboardInterrupt:
