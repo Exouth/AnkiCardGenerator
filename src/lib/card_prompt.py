@@ -15,6 +15,10 @@ class Card_Prompt:
         self.__api_instance = ObsidianAPI()
         self.__anki_instance = AnkiAPI()
     
+    def ask_decision(self):
+        user_decision = self.__prompt_instance.prompt_user("Whould you like to complete import Anki Cards [1] or just add Anki Cards [2]?")
+        return user_decision
+
     def ask_obsidian_path(self):
         self.general_path = self.__prompt_instance.promp_user_return("What is the Path to Obsidian?", "You set the Path to Obsidian to")
         return self.general_path
@@ -50,6 +54,9 @@ class Card_Prompt:
     def add_to_anki(self, data):
         for key, value in data.items():
             self.__anki_instance.add_card(self.anki_deck, key, value)
+
+    def find_duplicates(self, data):
+        
     
     def exit(self):
         self.__prompt_instance.write_message("Exam sucessfully generated! Exiting now!")
